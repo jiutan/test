@@ -114,3 +114,26 @@ git remote show [remote]	// 显示某个远程仓库的信息
 
 git pull [remote] [branch]	// 取回远程仓库的变化，并与本地分支合并
 ```
+
+### 11. 常见错误
+1.push错误：error: failed to push some refs to 'https://github.com/.git' 
+解决方法：
+	git pull origin main		从远程仓库获得最新修改，并合并
+
+2.合并错误：fatal: refusing to merge unrelated histories
+解决方法：
+	git pull origin main --allow-unrelated-histories	合并远程仓库的历史
+
+3.合并冲突：Merge branch 'main' of https://github.com/（仓库名）
+解决方法：不写原因，直接3，4步骤；写原因则1，2，3，4步骤：
+（1）按键盘字母 i 进入insert模式
+（2）修改最上面那行黄色合并信息,可以不修改
+（3）按键盘左上角"Esc"
+（4）输入":wq",按回车键即可
+
+4.解决完所有冲突后，提交更改
+	git add <冲突文件路径> 				通常是 git add .
+	git commit -m "合并远程仓库历史并解决冲突"
+
+5.再次尝试推送更改到远程仓库
+	git push origin main
